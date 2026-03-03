@@ -38,10 +38,15 @@ os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form.get("email")
+        login_input = request.form.get("login")  # single input field
         password = request.form.get("password")
 
-        user = User.query.filter_by(email=email).first()
+        # Search by email OR username OR phone
+        user = User.query.filter(
+            (User.email == login_input) |
+            (User.username == login_input) |
+            (User.phone == login_input)
+        ).first()
 
         if user and check_password_hash(user.password_hash, password):
             session["user_id"] = user.id
@@ -53,7 +58,6 @@ def login():
             flash("Invalid credentials", "error")
 
     return render_template("login.html")
-
 
 # ================= SIGNUP =================
 @app.route("/signup", methods=["GET", "POST"])
@@ -222,4 +226,5 @@ def logout():
 
 # ================= RUN =================
 if __name__ == "__main__":
+
     app.run(debug=True)
