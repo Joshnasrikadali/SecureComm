@@ -1,0 +1,224 @@
+/* ===== GLOBAL ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* ===== LOGIN & SIGNUP BACKGROUND ===== */
+.auth-body {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url("/static/images/login_bg.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== AUTH WRAPPER ===== */
+.auth-wrapper {
+    width: 95%;
+    max-width: 1000px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+/* ===== LEFT PANEL ===== */
+.image-panel {
+    flex: 1;
+    background: url("/static/images/login_bg.jpg") center/cover no-repeat;
+    color: white;
+    padding: 40px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.image-panel h2 {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+/* ===== FORM PANEL ===== */
+.form-panel {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-panel h2 {
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #7c3aed;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #6d28d9;
+}
+
+/* ===== DASHBOARD BACKGROUND ===== */
+.dashboard-body {
+    background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.85)),
+                url("/static/images/dashboard_bg.jpg") center/cover no-repeat;
+    color: white;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+.dashboard-container {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+/* ===== DASHBOARD TOPBAR ===== */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.welcome {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.logout {
+    color: #f87171;
+    text-decoration: none;
+}
+
+/* ===== CARDS ===== */
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ===== MOBILE ===== */
+@media(max-width: 768px) {
+    .auth-wrapper {
+        flex-direction: column;
+    }
+
+    .image-panel {
+        height: 250px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .form-panel {
+        padding: 30px;
+    }
+}
+
+/* ===== ACTION CARDS ===== */
+.action-cards {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.action-card {
+    flex: 1;
+    min-width: 250px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 40px;
+}
+
+.action-card h4 {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.action-card p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.action-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.2);
+}
+
+/* ===== MODAL ===== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 320px;
+    text-align: center;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-buttons button {
+    flex: 1;
+}

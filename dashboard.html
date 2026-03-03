@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard | SecureComm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-body">
+
+<div class="dashboard-container">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="welcome">
+            Welcome, {{ session['fullname'] }}
+        </div>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+
+    <!-- FLASH MESSAGE -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="card" style="background:#7f1d1d;">
+            {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- ACTION CARDS -->
+    <div class="card">
+        <h3>Secure File Operations</h3>
+
+        <div class="action-cards">
+            <div class="action-card" onclick="startEncrypt()">
+                🔐
+                <h4>Encrypt File</h4>
+                <p>Secure your file with password</p>
+            </div>
+
+            <div class="action-card" onclick="startDecrypt()">
+                🔓
+                <h4>Decrypt File</h4>
+                <p>Open encrypted .enc file</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTIVITY -->
+    <div class="card">
+        <h3>Activity</h3>
+        <table>
+            <tr>
+                <th>Action</th>
+                <th>File</th>
+                <th>Time</th>
+            </tr>
+            {% for act in activities %}
+            <tr>
+                <td>{{ act.action }}</td>
+                <td>{{ act.file_name }}</td>
+                <td>{{ act.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+<!-- Hidden Forms -->
+<form id="encryptForm" action="/encrypt" method="POST" enctype="multipart/form-data">
+    <input type="file" id="encryptFile" name="file" hidden>
+    <input type="hidden" id="encryptPassword" name="password">
+</form>
+
+<form id="decryptForm" action="/decrypt" method="POST" enctype="multipart/form-data">
+    <input type="file" id="decryptFile" name="file" hidden>
+    <input type="hidden" id="decryptPassword" name="password">
+</form>
+
+<!-- PASSWORD MODAL -->
+<div id="passwordModal" class="modal">
+    <div class="modal-content">
+        <h3 id="modalTitle">Enter Password</h3>
+        <input type="password" id="modalPassword" placeholder="Enter password">
+        <div class="modal-buttons">
+            <button onclick="submitAction()">Confirm</button>
+            <button onclick="closeModal()" style="background:#dc2626;">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
